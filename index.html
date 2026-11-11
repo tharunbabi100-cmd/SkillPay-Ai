@@ -1,0 +1,194 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>SkillPay AI - Student Finance</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+
+        <h2>SkillPay AI</h2>
+
+        <nav>
+            <a href="{{ url_for('home') }}" class="active">Dashboard</a>
+            <a href="{{ url_for('profile') }}">My Profile</a>
+            <a href="#">Income</a>
+            <a href="#">Expenses</a>
+            <a href="{{ url_for('college_fees') }}">College Fees</a>
+            <a href="{{ url_for('scholarships') }}">Scholarships</a>
+            <a href="#">Savings Goals</a>
+            <a href="#">Reports</a>
+        </nav>
+
+        <div class="sidebar-footer">
+            <p>Student Finance Management</p>
+        </div>
+
+    </aside>
+
+
+    <!-- Main Content -->
+    <main class="main-content">
+
+        <!-- Top Navigation -->
+        <header class="topbar">
+
+            <div>
+                <h1>Dashboard</h1>
+                <p>Manage your student finances easily.</p>
+            </div>
+
+            <div class="profile">
+
+                <span>
+                    Welcome, {{ session.get('student_name', 'Student') }}
+                </span>
+
+                <a href="{{ url_for('logout') }}"
+                   class="logout-btn">
+                    Logout
+                </a>
+
+            </div>
+
+        </header>
+
+
+        <!-- Financial Summary Cards -->
+        <section class="summary-cards">
+
+            <div class="card">
+                <h3>Total Balance</h3>
+                <h2 id="totalBalance">₹0</h2>
+                <p>Available money</p>
+            </div>
+
+            <div class="card">
+                <h3>Total Income</h3>
+                <h2 id="totalIncome">₹0</h2>
+                <p>Total recorded income</p>
+            </div>
+
+            <div class="card">
+                <h3>Total Expenses</h3>
+                <h2 id="totalExpenses">₹0</h2>
+                <p>Total recorded expenses</p>
+            </div>
+
+            <div class="card">
+                <h3>Total Savings</h3>
+                <h2 id="totalSavings">₹0</h2>
+                <p>Estimated savings</p>
+            </div>
+
+        </section>
+
+
+        <!-- Add Income or Expense -->
+        <section class="transaction-form">
+
+            <h2>Add Income or Expense</h2>
+
+            <form id="transactionForm">
+
+                <label for="transactionType">
+                    Transaction Type
+                </label>
+
+                <select id="transactionType" required>
+                    <option value="income">Income</option>
+                    <option value="expense">Expense</option>
+                </select>
+
+
+                <label for="description">
+                    Description
+                </label>
+
+                <input
+                    type="text"
+                    id="description"
+                    placeholder="Example: Food, Hostel, Allowance"
+                    maxlength="255"
+                    required
+                >
+
+
+                <label for="amount">
+                    Amount (₹)
+                </label>
+
+                <input
+                    type="number"
+                    id="amount"
+                    placeholder="Enter amount"
+                    min="0.01"
+                    step="0.01"
+                    required
+                >
+
+
+                <button type="submit">
+                    Add Transaction
+                </button>
+
+            </form>
+
+        </section>
+
+
+        <!-- Dashboard Sections -->
+        <section class="dashboard-sections">
+
+            <!-- Recent Transactions -->
+            <div class="panel" id="transactionsPanel">
+
+                <h2>Recent Transactions</h2>
+
+                <!-- JavaScript loads transactions from MySQL -->
+
+            </div>
+
+
+            <!-- Student Finance -->
+            <div class="panel">
+
+                <h2>Student Finance</h2>
+
+                <p>Track your college fees.</p>
+
+                <p>Manage your scholarships.</p>
+
+                <p>Monitor your daily expenses.</p>
+
+                <p>Plan your savings goals.</p>
+
+            </div>
+
+        </section>
+
+
+        <!-- Footer -->
+        <footer>
+            <p>© 2026 SkillPay AI | Student Finance Management</p>
+        </footer>
+
+    </main>
+
+
+    <!-- JavaScript -->
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+
+</body>
+
+</html>
